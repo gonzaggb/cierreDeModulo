@@ -3,21 +3,13 @@ let clientes = require('../clientes');
 
 let concesionaria = {
     autos: autos,
-    buscarAuto: function(patente){
-        let autoEncontrado = {};
-        this.autos.forEach(function(autos){ // hacer el forEach equivale a hacer un for, pero dada la forma de funcionar
-            if(autos.patente == patente){ //del mismo, que no retorna valores, debemos iterar con este y guardar los valores que querramos en otra variable
-                autoEncontrado = autos;
-            }
-        })
-        return autoEncontrado;
-    },
-//        for(let i = 0; i < autos.length; i++){
-//            if(this.autos[i].patente == patente){
-//                return autos[i];
-//            }
-//        }
-//   },
+    buscarAuto: function (patente){
+        let autoEncontrado = (this.autos.find(function(elementos){
+        return elementos.patente === patente
+    }))
+    return (autoEncontrado === undefined ? null:autoEncontrado)
+
+},
     venderAuto: function(patente){ //marca como vendido el auto que se vendio
         if(this.buscarAuto(patente).patente == patente){ //re utilizo la fx buscarAuto, que me devuelve un objeto del array autos (autos[i]) y comparo que su propiedad patente sea igual a la buscada
             return this.buscarAuto(patente).vendido = true; //si se cumple la condición, se cambia el valor de la propiedad vendido a true
@@ -76,14 +68,7 @@ let concesionaria = {
         return puedeComprar;
     }
 }
-//concesionaria.autosQuePuedeComprar(clientes);
-console.log(concesionaria.puedeComprar('Corolla',clientes))
-//console.log(concesionaria.puedeComprar('Corolla',clientes))
-console.log(concesionaria.autosQuePuedeComprar(clientes));
-//concesionaria.venderAuto('APL123');
-//concesionaria.venderAuto('JJK116');
-//console.log(concesionaria.listaDeVentas());
-//console.log(concesionaria.buscarAuto('APL123'));
-//console.log('el total de ventas fue de :' + concesionaria.totalDeVentas());
-//console.log(concesionaria.totalDeVentas());
-//console.log(concesionaria.autosNuevos());//para ejecutar la funcion se agregan parentesis.
+
+console.log(concesionaria.buscarAuto('JJK116'))
+concesionaria.venderAuto('JJK116')
+console.log(concesionaria.buscarAuto('JJK116'))
