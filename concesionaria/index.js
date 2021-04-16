@@ -27,13 +27,11 @@ let concesionaria = {
         },
 
     listaDeVentas: function(){ // devuelve la lista de autos vendidos
-        let i = 0;
         let precios = [];
         this.autos.forEach(function(autos){ // el forEach no lleva un return, únicamente itera sobre el array
             if(autos.vendido == true){
                 precios.push(autos.precio)
             }
-
         })
         return precios;
     },
