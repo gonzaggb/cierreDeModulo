@@ -16,15 +16,9 @@ let concesionaria = {
         }
     },
     autosParaLaVenta: function(){ // devuelve la lista de autos disponibles para vender
-        return autosParaVenta = this.autos.filter(function(autosDisp){
+        return this.autos.filter(function(autosDisp){
             return autosDisp.vendido == false;
-        }) // ARRAY dE AUTOS DISPONIBLES
-        /*
-                                    ----FORMA RESUMIDA DE HACER LA FUNCION DE AUTOS DISPONIBLE----
-        autosDisponible: function(){
-            return this.autos.filter(function(autosDisp){
-                return autosDisp.vendido == false;
-            })*/
+        }) 
     },
     autosNuevos: function(){ // devuelve la lista de autos nuevos
         return this.autosParaLaVenta().filter(function(auto0km){ //el metodo filter de arrays necesita de una funcion
@@ -37,8 +31,7 @@ let concesionaria = {
         let precios = [];
         this.autos.forEach(function(autos){ // el forEach no lleva un return, únicamente itera sobre el array
             if(autos.vendido == true){
-                precios[i] = autos.precio;
-                i++;
+                precios.push(autos.precio)
             }
 
         })
@@ -68,7 +61,9 @@ let concesionaria = {
         return puedeComprar;
     }
 }
-
-console.log(concesionaria.buscarAuto('JJK116'))
 concesionaria.venderAuto('JJK116')
-console.log(concesionaria.buscarAuto('JJK116'))
+concesionaria.venderAuto('APL123')
+console.log(concesionaria.listaDeVentas())
+/*console.log(concesionaria.buscarAuto('JJK116'))
+concesionaria.venderAuto('JJK116')
+console.log(concesionaria.buscarAuto('JJK116'))*/
